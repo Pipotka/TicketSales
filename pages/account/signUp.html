@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Страница создания аккаунта">
+        <title>Регистрация</title>
+    </head>
+    <body>
+        
+        <form id="signUpForm" >
+            <h1>Регистрация</h1>
+            <label for="username">Логин:</label><br>
+            <input required type="text" placeholder="логин" name="username" id="username"><br>
+            <label for="firstName">Имя:</label><br>
+            <input required type="text" placeholder="имя" name="firstName" id="firstName"><br>
+            <label for="lastName">Фамилия:</label><br>
+            <input required type="text" placeholder="фамилия" name="lastName" id="lastName"><br>
+            <label for="patronymic">Отчество:</label><br>
+            <input required type="text" placeholder="отчество" name="patronymic" id="patronymic"><br>
+            <label for="password">Пароль:</label><br>
+            <input required type="password" placeholder="пароль" name="password" id="password"><br>
+            <label for="passwordAgain">Пароль занаво:</label><br>
+            <input required type="password" placeholder="пароль занаво" name="passwordAgain" id="passwordAgain"><br>
+            <label for="phoneNumber">Номер телефона:</label><br>
+            <input type="tel" required pattern="" placeholder="номер телефона" name="phoneNumber" id="phoneNumber"><br>
+            
+            <br><input type="submit" value="Регистрация">
+        </form>
+
+        <script src="../../scripts/main.js"></script>
+    </body>
+</html>
