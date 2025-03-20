@@ -4,6 +4,11 @@
         <meta charset="UTF-8">
         <meta name="description" content="Страница создания аккаунта">
         <title>Регистрация</title>
+        <style>
+            .error-message {
+                color: crimson;
+            }
+        </style>
     </head>
     <body>
         
@@ -31,10 +36,70 @@
             <input type="tel" required placeholder="номер телефона" name="phoneNumber" id="phoneNumber">
             <div class="error-message"></div><br>
             
-            <br><input type="submit" onsubmit="submitForm(signUpForm)" value="Регистрация">
+            <br><input onclick="submitForm('signUpForm')" value="Регистрация">
         </form>
 
-        <script src="../../scripts/normalizers.js">console.log('загрузил normalizers');</script>
-        <script src="../../scripts/formLogic.js">showError('phoneNumber', 'Неверный формат номера телефона');</script>
+        <script>
+            function submitForm(formId) {
+            console.log("submitForm запущена");
+            const form = document.getElementById(formId);
+            console.log(`formId найден ${form}`);
+
+            const formData = new FormData(form);
+                
+                const data = Object.fromEntries(formData.entries());
+
+                if (!validateForm(data)) {
+                    return;
+                }
+
+                data.phoneNumber = normalizePhoneNumber(data.phoneNumber);
+
+                console.log(`Логин: ${data.username}`);
+                console.log(`Имя: ${data.firstName}`);
+                console.log(`Фамилия: ${data.lastName}`);
+                console.log(`Отчество: ${data.patronymic}`);
+                console.log(`Пароль: ${data.password}`);
+                console.log(`Пароль заново: ${data.passwordAgain}`);
+                console.log(`Телефон: ${data.phoneNumber}`);
+        
+
+                
+                window.location.href = 'profile.html';
+            }
+
+            function normalizePhoneNumber(phone) {
+                let normalized = phone.replace(/\D/g, '');
+
+                if (normalized.startsWith('8')) {
+                    normalized = '+7' + normalized.slice(1);
+                }
+
+                return normalized;
+            }
+
+            function validateForm(data) {
+                    let isValid = true;
+                
+                    if (data.password !== data.passwordAgain) {
+                        showError('passwordAgain', 'Пароли не совпадают');
+                        isValid = false;
+                    }
+                
+                    const phoneRegex = /^(\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
+                    if (!phoneRegex.test(data.phoneNumber)) {
+                        showError('phoneNumber', 'Неверный формат номера телефона');
+                        isValid = false;
+                    }
+
+                    return isValid;
+            }
+                
+            function showError(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                field.classList.add('error');
+                field.nextElementSibling.textContent = message;
+            }
+        </script>
     </body>
 </html>
