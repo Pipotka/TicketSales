@@ -7,26 +7,34 @@
     </head>
     <body>
         
-        <form id="signUpForm" >
+        <form id="signUpForm">
             <h1>Регистрация</h1>
             <label for="username">Логин:</label><br>
-            <input required type="text" placeholder="логин" name="username" id="username"><br>
+            <input required type="text" placeholder="логин" name="username" id="username">
+            <div class="error-message"></div><br>
             <label for="firstName">Имя:</label><br>
-            <input required type="text" placeholder="имя" name="firstName" id="firstName"><br>
+            <input required type="text" placeholder="имя" name="firstName" id="firstName">
+            <div class="error-message"></div><br>
             <label for="lastName">Фамилия:</label><br>
-            <input required type="text" placeholder="фамилия" name="lastName" id="lastName"><br>
+            <input required type="text" placeholder="фамилия" name="lastName" id="lastName">
+            <div class="error-message"></div><br>
             <label for="patronymic">Отчество:</label><br>
-            <input required type="text" placeholder="отчество" name="patronymic" id="patronymic"><br>
+            <input required type="text" placeholder="отчество" name="patronymic" id="patronymic">
+            <div class="error-message"></div><br>
             <label for="password">Пароль:</label><br>
-            <input required type="password" placeholder="пароль" name="password" id="password"><br>
-            <label for="passwordAgain">Пароль занаво:</label><br>
-            <input required type="password" placeholder="пароль занаво" name="passwordAgain" id="passwordAgain"><br>
+            <input required type="password" placeholder="пароль" name="password" id="password">
+            <div class="error-message"></div><br>
+            <label for="passwordAgain">Пароль заново:</label><br>
+            <input required type="password" placeholder="пароль заново" name="passwordAgain" id="passwordAgain">
+            <div class="error-message"></div><br>
             <label for="phoneNumber">Номер телефона:</label><br>
-            <input type="tel" required pattern="" placeholder="номер телефона" name="phoneNumber" id="phoneNumber"><br>
+            <input type="tel" required placeholder="номер телефона" name="phoneNumber" id="phoneNumber">
+            <div class="error-message"></div><br>
             
-            <br><input type="submit" value="Регистрация">
+            <br><input type="submit" onsubmit="submitForm(signUpForm)" value="Регистрация">
         </form>
 
-        <script src="../../scripts/main.js"></script>
+        <script src="../../scripts/normalizers.js">console.log('загрузил normalizers');</script>
+        <script src="../../scripts/formLogic.js">showError('phoneNumber', 'Неверный формат номера телефона');</script>
     </body>
 </html>
